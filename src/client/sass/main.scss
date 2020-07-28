@@ -1,0 +1,111 @@
+@import "abstract/variables";
+@import "abstract/functions";
+@import "abstract/mixins";
+
+
+@import "base/base";
+@import "base/typograpgy";
+@import "base/animations";
+@import "base/utilities";
+
+
+@import "layout/page";
+
+
+$color-pink: #EF5285;
+$color-light-blue: #A5DFF9;
+$color-torquase: #60C5BA;
+ 
+$row-width: 1400px;
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    height: 200vh;
+}
+
+
+.row {
+    width: $row-width;
+    margin: auto;
+}
+
+
+.navigation {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 90%;
+    box-shadow: 0px -5px 10px 0px $color-torquase;
+    padding: 10px;
+    border-bottom-right-radius: 45px;
+
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    &__primary-header {
+        font-weight: 400;
+        font-size: 3rem;
+        
+
+        &--torquase {
+            color: $color-torquase;
+        }
+
+
+        &--pink {
+            color: $color-pink
+        }
+
+
+    }
+    &__list {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 1.6rem;
+
+
+        &--item {
+            display: inline-block;
+            margin-right: 50px;
+
+
+            a:link, 
+            a:visited {
+                text-decoration: none;
+                color: #1c1c1c;
+                transition: all .2s ease;
+                border-bottom: 2px solid transparent;
+                padding-bottom: 2px;
+            }
+
+            a:hover {
+                color: $color-pink;
+                border-bottom-color: $color-light-blue;
+            }
+
+        }
+
+    }
+
+}
+
+
