@@ -15,10 +15,13 @@
 $color-pink: #EF5285;
 $color-light-blue: #A5DFF9;
 $color-torquase: #60C5BA;
- 
-$row-width: 1400px;
+$color-dark-blue: #0F3F56;
 
 
+$row-width: 1600px;
+$navigation-padding-left: 100px;
+
+$input-hight: 60px;
 
 * {
     padding: 0;
@@ -26,14 +29,16 @@ $row-width: 1400px;
     box-sizing: inherit;
 }
 
+
 html {
     font-size: 62.5%;
 }
 
+
 body {
     box-sizing: border-box;
     font-family: 'Lato', Arial, Helvetica, sans-serif;
-    height: 200vh;
+    overflow-x: hidden;
 }
 
 
@@ -44,20 +49,21 @@ body {
 
 
 .navigation {
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
     left: 0;
     width: 90%;
-    box-shadow: 0px -5px 10px 0px $color-torquase;
+    margin: auto;
+    box-shadow: 0px -9px 20px 0px $color-torquase;
     padding: 10px;
     border-bottom-right-radius: 45px;
-
-
-    .row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    border-bottom-left-radius: 45px;
+    padding-left: $navigation-padding-left;
+    z-index: 1000;
 
 
     &__primary-header {
@@ -97,6 +103,7 @@ body {
                 padding-bottom: 2px;
             }
 
+
             a:hover {
                 color: $color-pink;
                 border-bottom-color: $color-light-blue;
@@ -108,4 +115,289 @@ body {
 
 }
 
+
+.header {
+    margin-top:150px;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-areas: 
+    "hero-text hero-image"
+    "form hero-image";
+    grid-row-gap: 10px;
+    &__hero-text {
+        margin-top: auto;
+        margin-bottom: auto;
+        grid-area: hero-text;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: $color-dark-blue;
+        &--main {
+            font-size: 5rem;
+            word-spacing: 0.5rem;
+        }
+
+
+        &--sub {
+            font-size: 2rem;
+            letter-spacing: 0.3rem;
+        }
+    }
+
+
+    &__form {
+
+        display: grid;
+        grid-template-columns: 250px 250px;
+        grid-template-rows: repeat(3, $input-hight);
+        grid-template-areas: 
+        "destination destination"
+        "check-in check-out"
+        "btn btn";
+        grid-row-gap: 10px;
+        grid-area: form;
+        input {
+            height: $input-hight - 5px;
+            width: 100%;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.356);
+            border: none;
+            border-radius: 6px;
+            padding: 8px;
+            transition: all .5s ease;
+            outline-color: transparent;
+
+        }
+
+
+        input:focus {
+            outline-color: $color-light-blue;
+        }
+
+        &--destination {
+            grid-area: destination;
+            width: 490px;
+
+        }
+
+
+        &--check-in {
+            grid-area: check-in;
+            width: 240px;
+
+
+        }
+        &--check-out {
+            width: 240px;
+            grid-area: check-out;
+
+        }
+
+
+         .btn, 
+         .btn:link, 
+         .btn:visited {
+            grid-area: btn;
+            height: 45px;
+            width: 150px;
+            margin-left: 5px;
+            border: none;
+            color: white;
+            font-weight: 300;
+            font-size: 1.8rem;
+            outline: none;
+            cursor: pointer;
+            transition: all .2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 300;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        
+        .btn-pink {
+            background-color: $color-pink;
+            border-radius: 10px;
+            border-top-right-radius: 50px;
+        }
+    }
+
+
+
+    &__img-container {
+        text-align: right;
+        grid-area: hero-image;
+        position: relative;
+        &::after {
+            content: "";
+            display: block;
+            background-color: $color-torquase;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 1000px;
+            width: 1000px;
+            transform: rotate(20deg) translateY(-420px) translateX(40px);
+            transform: tr;
+            z-index: -1;
+            border-radius: 80px;
+            clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+        }
+    }
+
+}
+
+
+.trips {
+    background-color: #f8f8f8;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 130px;
+    position: relative;
+    z-index: -2;
+    &__heading {
+        text-align: center;
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        color: $color-dark-blue;
+    }
+}
+
+@mixin slider-background($color, $top) {
+    position: absolute;
+    left:0;
+    top: $top; 
+    background-color: $color;
+    width: 100%;
+    height: 33.333%;
+    z-index: -1;
+}
+
+.cards-slider {
+    height: 50vh;
+    width: $row-width;
+    margin: 30px auto;
+    position: relative;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-auto-flow: column dense;
+    overflow: hidden;
+    place-items: center;
+    
+    &__left-btn {
+        font-size: 3rem;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        z-index: 100;
+        transform: translate(25%, -50%);
+        background-color: white;
+        width: 50px;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        text-decoration: none;
+        color: $color-pink;
+        box-shadow: 0px 0px 12px .5px rgba(0, 0, 0, 0.2);
+    }
+
+    &__right-btn {
+        font-size: 3rem;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 100;
+        transform: translate(-25%, -50%);
+        background-color: white;
+        width: 50px;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        text-decoration: none;
+        color: $color-pink;
+        box-shadow: 0px 0px 12px .5px rgba(0, 0, 0, 0.2);
+    }
+
+    &--background-terquase {
+        @include slider-background($color-torquase, 0%);
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+    } 
+
+    &--background-pink {
+        @include slider-background($color-pink, 33.333%);
+
+    } 
+
+    &--background-light-blue {
+        @include slider-background($color-light-blue, 66.666%);
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    } 
+
+}
+
+
+.card {
+    width: 333px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 150px;
+    border-top-right-radius: 150px;
+    img {
+        width: 100%;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+
+    &__city {
+        font-size: 3rem;
+        color: $color-torquase;
+        font-weight: 400;
+
+        &--country {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+    }
+
+    &__date {
+        margin-top: 10px;
+        font-size: 1.7rem;
+        color: $color-dark-blue;
+        i {
+            margin: 0 5px;
+            color: $color-pink;
+        }
+    }
+
+    &__degree {
+        margin-top: 10px;
+        font-size: 1.7rem;
+    }
+
+    &__time {
+        margin: auto;
+        margin-top: 10px;
+        font-size: 1.7rem;
+        background-color: $color-pink;
+        color: white;
+        padding: 8px 0px;
+        border-radius: 30px 30px 0 0;
+        width: 50%;
+        text-align: center;
+    }
+}
 
