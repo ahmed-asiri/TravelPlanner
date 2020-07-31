@@ -89,6 +89,9 @@ body {
         justify-content: space-evenly;
         font-size: 1.6rem;
 
+        &--header {
+            display: none;
+        }
 
         &--item {
             display: inline-block;
@@ -175,7 +178,7 @@ body {
             padding: 8px;
             transition: all .5s ease;
             outline-color: transparent;
-
+            -webkit-appearance: none;
         }
 
         input:focus {
@@ -298,6 +301,7 @@ body {
     margin: 30px auto;
     position: relative;
     overflow: hidden;
+    height: 450px;
 
 
 
@@ -598,6 +602,17 @@ body {
 
 }
 
+@keyframes menu-right-to-left {
+    0% {
+        transform: translateX(0%);
+        
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 
 @media screen and (max-width: 800px) {
     
@@ -626,28 +641,72 @@ body {
         width: $row-width;
     }
 
+
+
     .navigation {
 
         width: 100%;
         padding-left: $navigation-padding-left;
         border-radius: 0;
-    
+        position: relative;
+
+
+
         &__list {
             list-style: none;
-            display: flex;
+            display: none;
             justify-content: space-evenly;
             font-size: 1.6rem;
-            display: none;
-    
+
+            &.active {
+                animation-name: menu-right-to-left;
+                animation-duration: .5s;
+                animation-fill-mode: forwards;
+                transition: transform 3s ease;
+                display: block;
+                background-color: $color-dark-blue;
+                position: absolute;
+                left: 100%;
+                top: 0%;
+                height: 100vh;
+                width: 50%;
+                padding: 20px 20px;
+                
+                .navigation__list--header {
+                    margin-bottom: 40px;
+                    display: block;
+                    font-size: 3rem;
+                    color: $color-light-blue;
+                    text-transform: uppercase;
+                    text-align: left;
+                    position: relative;
+
+                    i {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        color: $color-pink;
+                    }
+                } 
+
+                .navigation__list--item {
+                    display: block;
+                    margin: 0;
+                    font-size: 2.5rem;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid rgba($color: $color-light-blue, $alpha: .2);
+                    margin-bottom: 20px;
+                }
+            }
+            
+        
             &--item {
-                display: inline-block;
-                margin-right: 50px;
-    
-    
+
+
                 a:link, 
                 a:visited {
                     text-decoration: none;
-                    color: #1c1c1c;
+                    color: $color-torquase;
                     transition: all .2s ease;
                     border-bottom: 2px solid transparent;
                     padding-bottom: 2px;
@@ -777,30 +836,39 @@ body {
 
     .cards-slider {
         width: $slider-width;
+
+        &__right-btn {
+            transform: translate(-5%, -50%);
+        }
+
+        &__left-btn {
+            transform: translate(5%, -50%);
+        }
     }
 
     .card {
-        width: 250px;
-        margin: 0 25px
+        width: 220px;
+        margin: 0 40px;
     }
 
     .header {
+        grid-row-gap: 30px;
         &__form {
             text-align: left;
-            grid-template-columns: 50% 50%;
-            grid-column-gap: 5%;
+            grid-template-columns: 160px 160px;
+
             &--destination {
                 grid-area: destination;
-                width: 99%;
+                width: 310px;
             }
 
             &--check-in {
                 grid-area: check-in;
-                width: 97.5%;
+                width: 150px;
             }
             
             &--check-out {
-                width: 97.5%;
+                width: 150px;
                 grid-area: check-out;
 
             }
@@ -844,7 +912,11 @@ body {
     
 }
 .trips {
-    margin-top: 20px;
+    margin-top: 80px;
+}
+
+.navigation__list.active {
+    width: 100%;
 }
 
 }
