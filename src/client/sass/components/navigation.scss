@@ -1,0 +1,77 @@
+.navigation {
+    animation-name: nav-top-to-bottom;
+    animation-duration: 1s;
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 90%;
+    margin: auto;
+    box-shadow: 0px -9px 20px 0px $color-torquase;
+    padding: 10px;
+    border-bottom-right-radius: 45px;
+    border-bottom-left-radius: 45px;
+    padding-left: $navigation-padding-left;
+    z-index: 1000;
+
+
+    &__primary-header {
+        font-weight: 400;
+        font-size: 3rem;
+        
+
+        &--torquase {
+            color: $color-torquase;
+        }
+
+
+        &--pink {
+            color: $color-pink
+        }
+
+
+    }
+    &__list {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 1.6rem;
+
+        &--header {
+            display: none;
+        }
+
+        &--item {
+            display: inline-block;
+            margin-right: 50px;
+
+
+            a:link, 
+            a:visited {
+                text-decoration: none;
+                color: #1c1c1c;
+                transition: all .2s ease;
+                border-bottom: 2px solid transparent;
+                padding-bottom: 2px;
+            }
+
+
+            a:hover {
+                color: $color-pink;
+                border-bottom-color: $color-light-blue;
+            }
+
+        }
+
+    }
+
+
+    &__menu {
+        display: none;
+        color: $color-dark-blue;
+        font-size: 3rem;
+    }
+}

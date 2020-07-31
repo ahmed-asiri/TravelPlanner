@@ -1,0 +1,38 @@
+@keyframes rotated-hero {
+    0% {
+        transform: translateX(50%) rotate(30deg);
+    }
+
+}
+
+@keyframes show {
+    0% {
+        transform: translateY(-450%);
+    }
+}
+@keyframes left-to-right {
+    0% {
+        transform: translateX(-200%);
+    }
+
+}
+
+@keyframes nav-top-to-bottom {
+
+    0% {
+        transform: translateY(-120%);
+    }
+}
+
+
+@keyframes menu-right-to-left {
+
+    0% {
+        transform: translateX(0%);
+        
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

@@ -1,0 +1,453 @@
+@media screen and (max-width: 1600px) {
+    $row-width: 1400px;
+    $slider-width: 1200px;
+    html {
+        font-size: 60%;
+    }
+    .cards-slider {
+        width: $slider-width;
+    }
+
+    .card {
+        width: 250px;
+        margin: 0 75px
+    }
+
+    .row {
+        width: $row-width;
+    }
+
+
+}
+
+
+@media screen and (max-width: 1400px) {
+
+    $row-width: 1200px;
+
+    html {
+        font-size: 58%;
+    }
+
+    .row {
+        width: $row-width;
+    }
+
+    .header {
+
+        &__img-container {
+            &::after {
+                height: 800px;
+                width: 800px;
+                transform: rotate(20deg) translateY(-300px) translateX(80px);
+            }
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 1200px) {
+    
+    $row-width: 1100px;
+    $slider-width: 1000px;
+
+    html {
+        font-size: 58%;
+    }
+
+    .cards-slider {
+        width: $slider-width;
+    }
+
+    .card {
+        width: 250px;
+        margin: 0 41.666px
+    }
+    
+    .row {
+        width: $row-width;
+    }
+
+    .header {
+
+        &__img-container {
+
+            &::after {
+                transform: rotate(20deg) translateY(-300px) translateX(130px);
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+    
+    $row-width: 1000px;
+
+    html {
+        font-size: 55%;
+    }
+
+    
+    .row {
+        width: $row-width;
+    }
+
+    .header {
+
+        &__img-container {
+
+            &::after {
+                transform: rotate(20deg) translateY(-300px) translateX(200px);
+            }
+        }
+    }
+
+}
+
+
+
+@media screen and (max-width: 1000px) {
+    
+    $row-width: 800px;
+    $slider-width: 800px;
+
+    html {
+        font-size: 55%;
+    }
+
+    .cards-slider {
+        width: $slider-width;
+    }
+
+    .card {
+        width: 250px;
+        margin: 0 75px
+    }
+    
+    .row {
+        width: $row-width;
+    }
+
+    .header {
+        grid-template-columns: 70% 30%;
+        &__img-container {
+            opacity: 0.7;
+            z-index: -2;
+            &::after {
+                transform: rotate(20deg) translateY(-370px) translateX(340px);
+            }
+        }
+    }
+
+}
+
+
+
+@media screen and (max-width: 800px) {
+    
+    $row-width: 100%;
+    $navigation-padding-left: 10px;
+    $slider-width: 650px;
+
+    html {
+        font-size: 55%;
+    }
+
+    body {
+        background-color: #f8f8f8;
+    }
+
+    .cards-slider {
+        width: $slider-width;
+    }
+
+    .card {
+        width: 250px;
+        margin: 0 37.5px
+    }
+    
+    .row {
+        width: $row-width;
+    }
+
+
+
+    .navigation {
+
+        width: 100%;
+        padding-left: $navigation-padding-left;
+        border-radius: 0;
+        position: relative;
+
+        &__list {
+            list-style: none;
+            display: none;
+            justify-content: space-evenly;
+            font-size: 1.6rem;
+
+            &.active {
+                animation-name: menu-right-to-left;
+                animation-duration: .5s;
+                animation-fill-mode: forwards;
+                transition: transform 3s ease;
+                display: block;
+                background-color: $color-dark-blue;
+                position: absolute;
+                left: 100%;
+                top: 0%;
+                height: 100vh;
+                width: 50%;
+                padding: 20px 20px;
+                
+                .navigation__list--header {
+                    margin-bottom: 40px;
+                    display: block;
+                    font-size: 3rem;
+                    color: $color-light-blue;
+                    text-transform: uppercase;
+                    text-align: left;
+                    position: relative;
+
+                    i {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        color: $color-pink;
+                    }
+                } 
+
+                .navigation__list--item {
+                    display: block;
+                    margin: 0;
+                    font-size: 2.5rem;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid rgba($color: $color-light-blue, $alpha: .2);
+                    margin-bottom: 20px;
+                }
+            }
+            
+        
+            &--item {
+
+                a:link, 
+                a:visited {
+                    text-decoration: none;
+                    color: $color-torquase;
+                    transition: all .2s ease;
+                    border-bottom: 2px solid transparent;
+                    padding-bottom: 2px;
+                }
+    
+    
+                a:hover {
+                    color: $color-pink;
+                    border-bottom-color: $color-light-blue;
+                }
+    
+            }
+    
+        }
+
+        &__menu {
+            display: block;
+        }
+    }
+
+    .header {
+        grid-template-columns: 100%;
+        place-items: center;
+
+        &__hero-text {
+            text-align: center;
+        }
+
+        &__img-container {
+            position: absolute;
+            top: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            left: 50%;
+
+            img {
+                opacity: .2;
+                width: 130%;
+            }
+
+            &::after {
+                width: 710px;
+                height: 710px;
+                left: 50%;
+                top: 50%;
+                transform: rotate(0deg) translate(-50%, -50%);
+                background-color: $color-light-blue;
+            }
+        }
+
+    }
+
+}
+
+
+@media screen and (max-width: 600px) {
+
+
+    $row-width: 100%;
+    $slider-width: 400px;
+
+
+    html {
+        font-size: 50%;
+    }
+
+    .row {
+        width: $row-width;
+    }
+
+    .cards-slider {
+        width: $slider-width;
+    }
+
+    .card {
+        width: 250px;
+        margin: 0 75px
+    }
+
+    .header {
+
+        &__form {
+            text-align: left;
+            grid-template-columns: 220px 220px;
+
+            &--destination {
+                grid-area: destination;
+                width: 430px;
+            }
+
+            &--check-in {
+                grid-area: check-in;
+                width: 210px;
+            }
+            
+            &--check-out {
+                width: 210px;
+                grid-area: check-out;
+
+            }
+
+             .btn, 
+             .btn:link, 
+             .btn:visited {
+                margin: auto;
+                border-radius: 25px 25px 5px 5px;
+            }
+    
+
+        }
+
+    
+}
+}
+
+
+@media screen and (max-width: 435px) {
+
+
+    $row-width: 100%;
+    $slider-width: 300px;
+    $navigation-padding-left: 10px;
+
+    html {
+        font-size: 55%;
+    }
+
+    .row {
+        width: $row-width;
+    }
+
+    .cards-slider {
+        width: $slider-width;
+
+        &__right-btn {
+            transform: translate(-5%, -50%);
+        }
+
+        &__left-btn {
+            transform: translate(5%, -50%);
+        }
+    }
+
+    .card {
+        width: 220px;
+        margin: 0 40px;
+    }
+
+    .header {
+        grid-row-gap: 30px;
+        &__form {
+            text-align: left;
+            grid-template-columns: 160px 160px;
+
+            &--destination {
+                grid-area: destination;
+                width: 310px;
+            }
+
+            &--check-in {
+                grid-area: check-in;
+                width: 150px;
+            }
+            
+            &--check-out {
+                width: 150px;
+                grid-area: check-out;
+
+            }
+
+            &
+
+             .btn, 
+             .btn:link, 
+             .btn:visited {
+                margin: auto;
+                border-radius: 25px 25px 5px 5px;
+            }
+        }
+
+        &__img-container {
+            position: absolute;
+            top: 10%;
+            text-align: center;
+            transform: translate(-50%, 0%);
+            left: 50%;
+
+            img {
+
+                opacity: 1;
+                width: 100px;
+                height: 100px;
+            }
+
+            &::after {
+                border-radius: 0;
+                width: 130px;
+                height: 130px;
+                left: 50%;
+                top: 50%;
+                transform: rotate(0deg) translate(-50%, -50%);
+                background-color: $color-torquase;
+            }
+        }
+        
+}
+
+.trips {
+    margin-top: 80px;
+}
+
+.navigation__list.active {
+    width: 100%;
+}
+
+}

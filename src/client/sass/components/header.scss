@@ -1,0 +1,147 @@
+.header {
+    margin-top:150px;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-areas: 
+    "hero-text hero-image"
+    "form hero-image";
+    grid-row-gap: 10px;
+
+    &__hero-text {
+        animation: show 2s;
+        margin-top: auto;
+        margin-bottom: auto;
+        grid-area: hero-text;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: $color-dark-blue;
+
+        &--main {
+            font-size: 5rem;
+            word-spacing: 0.5rem;
+        }
+
+
+        &--sub {
+            font-size: 2rem;
+            letter-spacing: 0.3rem;
+        }
+    }
+
+
+    &__form {
+        display: grid;
+        grid-template-columns: 250px 250px;
+        grid-template-rows: repeat(3, $input-hight);
+        grid-template-areas: 
+        "destination destination"
+        "check-in check-out"
+        "btn btn";
+        grid-row-gap: 10px;
+        grid-area: form;
+
+        input {
+            height: $input-hight - 5px;
+            width: 100%;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.356);
+            border: none;
+            border-radius: 6px;
+            padding: 8px;
+            transition: all .5s ease;
+            outline-color: transparent;
+            -webkit-appearance: none;
+        }
+
+        input:focus {
+            outline-color: $color-light-blue;
+        }
+
+        &--destination {
+            animation: left-to-right 2s;
+            grid-area: destination;
+            width: 490px;
+
+        }
+
+
+        &--check-in {
+            animation: left-to-right 2.5s;
+            grid-area: check-in;
+            width: 240px;
+
+
+        }
+        &--check-out {
+            animation: left-to-right 2.5s;
+            width: 240px;
+            grid-area: check-out;
+
+        }
+
+        grid-template-areas: 
+        "destination destination"
+        "check-in check-out"
+        "btn btn";
+         .btn, 
+         .btn:link, 
+         .btn:visited {
+            animation: left-to-right 3s;
+            grid-area: btn;
+            height: 45px;
+            width: 150px;
+            margin-left: 5px;
+            border: none;
+            color: white;
+            font-weight: 300;
+            font-size: 1.8rem;
+            outline: none;
+            cursor: pointer;
+            transition: all .2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 300;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        
+        .btn-pink {
+            background-color: $color-pink;
+            border-radius: 10px;
+            border-top-right-radius: 50px;
+        }
+    }
+
+
+    &__img-container {
+        text-align: right;
+        grid-area: hero-image;
+        position: relative;
+        animation-name: rotated-hero;
+        animation-duration: 2s;
+        &::after {
+            content: "";
+            display: block;
+            background-color: $color-torquase;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 1000px;
+            width: 1000px;
+            transform: rotate(20deg) translateY(-420px) translateX(40px);
+            transform: tr;
+            z-index: -1;
+            border-radius: 80px;
+            clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+
+        }
+    }
+
+}

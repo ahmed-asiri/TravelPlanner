@@ -15,7 +15,45 @@ body {
   width: 1600px;
   margin: auto; }
 
+@keyframes rotated-hero {
+  0% {
+    transform: translateX(50%) rotate(30deg); } }
+
+@keyframes show {
+  0% {
+    transform: translateY(-450%); } }
+
+@keyframes left-to-right {
+  0% {
+    transform: translateX(-200%); } }
+
+@keyframes nav-top-to-bottom {
+  0% {
+    transform: translateY(-120%); } }
+
+@keyframes menu-right-to-left {
+  0% {
+    transform: translateX(0%); }
+  100% {
+    transform: translateX(-100%); } }
+
+.trips {
+  z-index: 1;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 130px;
+  position: relative; }
+  .trips__heading {
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #0F3F56; }
+
 .navigation {
+  animation-name: nav-top-to-bottom;
+  animation-duration: 1s;
   display: flex;
   background-color: white;
   justify-content: space-between;
@@ -71,6 +109,7 @@ body {
   grid-template-areas: "hero-text hero-image" "form hero-image";
   grid-row-gap: 10px; }
   .header__hero-text {
+    animation: show 2s;
     margin-top: auto;
     margin-bottom: auto;
     grid-area: hero-text;
@@ -104,17 +143,21 @@ body {
     .header__form input:focus {
       outline-color: #A5DFF9; }
     .header__form--destination {
+      animation: left-to-right 2s;
       grid-area: destination;
       width: 490px; }
     .header__form--check-in {
+      animation: left-to-right 2.5s;
       grid-area: check-in;
       width: 240px; }
     .header__form--check-out {
+      animation: left-to-right 2.5s;
       width: 240px;
       grid-area: check-out; }
     .header__form .btn,
     .header__form .btn:link,
     .header__form .btn:visited {
+      animation: left-to-right 3s;
       grid-area: btn;
       height: 45px;
       width: 150px;
@@ -141,7 +184,9 @@ body {
   .header__img-container {
     text-align: right;
     grid-area: hero-image;
-    position: relative; }
+    position: relative;
+    animation-name: rotated-hero;
+    animation-duration: 2s; }
     .header__img-container::after {
       content: "";
       display: block;
@@ -156,20 +201,6 @@ body {
       z-index: -1;
       border-radius: 80px;
       clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%); }
-
-.trips {
-  z-index: 1;
-  width: 100%;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-top: 130px;
-  position: relative; }
-  .trips__heading {
-    text-align: center;
-    font-size: 3rem;
-    text-transform: uppercase;
-    font-weight: 400;
-    color: #0F3F56; }
 
 .cards-slider {
   height: 50vh;
@@ -366,12 +397,6 @@ body {
       z-index: -2; }
       .header__img-container::after {
         transform: rotate(20deg) translateY(-370px) translateX(340px); } }
-
-@keyframes menu-right-to-left {
-  0% {
-    transform: translateX(0%); }
-  100% {
-    transform: translateX(-100%); } }
 
 @media screen and (max-width: 800px) {
   html {

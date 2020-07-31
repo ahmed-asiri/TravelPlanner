@@ -1,0 +1,15 @@
+.trips {
+    z-index: 1;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 130px;
+    position: relative;
+    &__heading {
+        text-align: center;
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        color: $color-dark-blue;
+    }
+}
