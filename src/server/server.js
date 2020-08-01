@@ -4,10 +4,14 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded());
 
+
+app.use("/", express.static(__dirname + "/../../dist"));
 
 const port = process.env.PORT || 3000;
 app.listen( port, () => {

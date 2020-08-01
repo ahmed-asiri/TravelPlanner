@@ -8,14 +8,21 @@ module.exports = {
         rules: [
             
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
+                test: /\.(gif|png|jpe?g|svg|ico)$/i,
                 use: [
-                  'file-loader',
+                  {
+                    loader: 'file-loader',
+                    options: {
+                      name: '[name].[ext]'
+                    }
+                  }
+                  ,
                   {
                     loader: 'image-webpack-loader',
                     options: {
                       bypassOnDebug: true, // webpack@1.x
                       disable: true, // webpack@2.x and newer
+                      name: "[name].[ext]"
                     },
                   },
                 ],
