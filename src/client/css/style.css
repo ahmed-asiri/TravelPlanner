@@ -110,7 +110,8 @@ body {
   height: 50vh;
   display: grid;
   grid-template-columns: 60% 40%;
-  grid-template-areas: "hero-text hero-image" "form hero-image";
+  grid-template-areas: "hero-text hero-image"
+ "form hero-image";
   grid-row-gap: 10px; }
   .header__hero-text {
     margin-top: auto;
@@ -131,10 +132,14 @@ body {
     display: grid;
     grid-template-columns: 250px 250px;
     grid-template-rows: repeat(3, 60px);
-    grid-template-areas: "destination destination" "check-in check-out" "btn btn";
+    grid-template-areas: "destination destination"
+ "check-in check-out"
+ "btn btn";
     grid-row-gap: 10px;
     grid-area: form;
-    grid-template-areas: "destination destination" "check-in check-out" "btn btn"; }
+    grid-template-areas: "destination destination"
+ "check-in check-out"
+ "btn btn"; }
     .header__form input {
       height: 55px;
       width: 100%;
@@ -435,32 +440,32 @@ body {
         transition: transform 3s ease;
         display: block;
         background-color: #0F3F56;
-        position: absolute;
+        position: fixed;
         left: 100%;
         top: 0%;
         height: 100vh;
         width: 50%;
         padding: 20px 20px; }
-        .navigation__list.active .navigation__list--header {
-          margin-bottom: 40px;
-          display: block;
-          font-size: 3rem;
-          color: #A5DFF9;
-          text-transform: uppercase;
-          text-align: left;
-          position: relative; }
-          .navigation__list.active .navigation__list--header i {
-            position: absolute;
-            right: 0;
-            top: 0;
-            color: #EF5285; }
-        .navigation__list.active .navigation__list--item {
-          display: block;
-          margin: 0;
-          font-size: 2.5rem;
-          padding-bottom: 5px;
-          border-bottom: 1px solid rgba(165, 223, 249, 0.2);
-          margin-bottom: 20px; }
+      .navigation__list--item {
+        display: block;
+        margin: 0;
+        font-size: 2.5rem;
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgba(165, 223, 249, 0.2);
+        margin-bottom: 20px; }
+      .navigation__list--header {
+        margin-bottom: 40px;
+        display: block;
+        font-size: 3rem;
+        color: #A5DFF9;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative; }
+        .navigation__list--header i {
+          position: absolute;
+          right: 0;
+          top: 0;
+          color: #EF5285; }
       .navigation__list--item a:link,
       .navigation__list--item a:visited {
         text-decoration: none;

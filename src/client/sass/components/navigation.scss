@@ -17,7 +17,6 @@
     padding-left: $navigation-padding-left;
     z-index: 1000;
 
-
     &__primary-header {
         font-weight: 400;
         font-size: 3rem;
@@ -34,6 +33,7 @@
 
 
     }
+
     &__list {
         list-style: none;
         display: flex;

@@ -194,41 +194,42 @@
                 transition: transform 3s ease;
                 display: block;
                 background-color: $color-dark-blue;
-                position: absolute;
+                position: fixed;
                 left: 100%;
                 top: 0%;
                 height: 100vh;
                 width: 50%;
                 padding: 20px 20px;
-                
-                .navigation__list--header {
-                    margin-bottom: 40px;
-                    display: block;
-                    font-size: 3rem;
-                    color: $color-light-blue;
-                    text-transform: uppercase;
-                    text-align: left;
-                    position: relative;
 
-                    i {
-                        position: absolute;
-                        right: 0;
-                        top: 0;
-                        color: $color-pink;
-                    }
-                } 
 
-                .navigation__list--item {
-                    display: block;
-                    margin: 0;
-                    font-size: 2.5rem;
-                    padding-bottom: 5px;
-                    border-bottom: 1px solid rgba($color: $color-light-blue, $alpha: .2);
-                    margin-bottom: 20px;
-                }
+
+
+            }
+            &--item {
+                display: block;
+                margin: 0;
+                font-size: 2.5rem;
+                padding-bottom: 5px;
+                border-bottom: 1px solid rgba($color: $color-light-blue, $alpha: .2);
+                margin-bottom: 20px;
             }
             
-        
+            &--header {
+                margin-bottom: 40px;
+                display: block;
+                font-size: 3rem;
+                color: $color-light-blue;
+                text-transform: uppercase;
+                text-align: left;
+                position: relative;
+
+                i {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    color: $color-pink;
+                }
+            } 
             &--item {
 
                 a:link, 

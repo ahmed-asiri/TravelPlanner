@@ -22,6 +22,7 @@ document.querySelector(".cards-slider").addEventListener("click", sliderMovment)
 function sliderMovment(eve) {
 
     eve.preventDefault();
+    
     let sliderWidth = this.getBoundingClientRect().width;
     let cardContainer = this.firstElementChild;
     let cardContainerWidth = cardContainer.scrollWidth;
