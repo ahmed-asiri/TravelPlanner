@@ -9,7 +9,6 @@
     grid-row-gap: 10px;
 
     &__hero-text {
-        animation: show 2s;
         margin-top: auto;
         margin-bottom: auto;
         grid-area: hero-text;
@@ -18,12 +17,14 @@
         color: $color-dark-blue;
 
         &--main {
+            animation: header-show 2s;
             font-size: 5rem;
             word-spacing: 0.5rem;
         }
 
 
         &--sub {
+            animation: header-show 3s;
             font-size: 2rem;
             letter-spacing: 0.3rem;
         }

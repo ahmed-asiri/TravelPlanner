@@ -15,6 +15,7 @@
         grid-auto-flow: column dense;
         place-items: center;
         height: 100%;
+        transition: all 0.2s ease;
     }
 
     &__left-btn {
@@ -53,6 +54,9 @@
         color: $color-pink;
         box-shadow: 0px 0px 12px .5px rgba(0, 0, 0, 0.2);
         cursor: pointer;
+    }
+    a i {
+        pointer-events: none;
     }
 
     &--background-terquase {
