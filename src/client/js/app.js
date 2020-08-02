@@ -1,6 +1,7 @@
 
 import {validate} from "./validate";
 import {getData} from "./apiCalls";
+import {isCurrent} from "./current";
 
 export function eventsRegister() {
 
@@ -66,6 +67,7 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
     };
 
     let validatedResult =  validate(tripData);
+    tripData.isCurrent = isCurrent(tripData);
 
     if(!validatedResult.approved){
         Swal.fire({

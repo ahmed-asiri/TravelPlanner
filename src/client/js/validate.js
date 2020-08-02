@@ -1,19 +1,20 @@
 export function validate(tripData) {
 
     let result = {
-        approved: false,
+        approved: true,
         message: ""
     }
     // This function for validating the User Input data.
     if(!isEmpty(tripData.dest) && !isEmpty(tripData.depart.value) && !isEmpty(tripData.arrive.value)){
         if(dateDimension(tripData.depart.valueAsDate, tripData.arrive.valueAsDate)){
-            result.approved = true;
             return result;
         }
         result.message = "Wrong date Dimensions, try again!!"
     } else {
         result.message = "There is missing input, please fill the form."
-    } 
+    }
+     
+    result.approved = false;
     return result;
 }
 
