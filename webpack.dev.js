@@ -11,8 +11,7 @@ module.exports = merge(common, {
     },    
     // This devServer Object will be used for the live server only.
     devServer: {
-        contentBase: "./dist",
-        open: true
+        contentBase: "dist"
     },
     module: {
     rules: [

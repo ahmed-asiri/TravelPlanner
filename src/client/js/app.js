@@ -1,7 +1,8 @@
 
+import {validate} from "./validate";
+import {getData} from "./apiCalls";
 
-
-function eventsRegister() {
+export function eventsRegister() {
 
 // Burger Menu open Event
 document.querySelector(".navigation__menu").addEventListener("click", (eve) => {
@@ -49,7 +50,47 @@ function sliderMovment(eve) {
         }
     
 }
+
+
+
+
+
+document.querySelector(".header__form--btn").addEventListener("click", async function (eve) {
+    eve.preventDefault();
+    let inputs = document.querySelectorAll("input");
+    
+    let tripData = {
+        dest: inputs[0].value,
+        depart: inputs[1],
+        arrive: inputs[2]
+    };
+
+    let validatedResult =  validate(tripData);
+    
+    if(!validatedResult.approved){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${validatedResult.message}`,
+            allowOutsideClick: false
+          });
+    } else {
+        getData(tripData);
+    }
+    
+    let result = await fetch("http://api.geonames.org/searchJSON?q=london&maxRows=10&username=demo");
+    let data = await result.json();
+    console.log(data);
+
+});
+
 }
 
 
-eventsRegister();
+
+
+
+// CARD, we can insert it in the footer in swalAlert
+let card = '<div class="card"><div class="card__img-option"><img src="./assets/hero-image.jpg" alt="hero"><div class="card__img-option--options"><i class="far fa-trash-alt"></i></div></div><h3 class="card__city"> Paris, <span class="card__city--country">france</span></h3><p class="card__date">10/10/2020 <i class="fas fa-plane"></i> 15/10/2020</p><p class="card__degree">30 to 45</p><p class="card__time">5 days away</p></div>'
+
+

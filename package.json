@@ -6,8 +6,8 @@
   "scripts": {
     "compile:sass": "node-sass src/client/sass/main.scss src/client/css/style.css -w",
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack --config webpack.dev.js",
-    "dev:start": "webpack-dev-server --config webpack.dev.js",
+    "start": "webpack --config webpack.dev.js --watch",
+    "dev": "webpack-dev-server --config webpack.dev.js --open --hot",
     "test": "jest"
   },
   "author": "",
