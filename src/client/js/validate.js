@@ -1,4 +1,3 @@
-
 export function validate(tripData) {
 
     let result = {
@@ -15,9 +14,7 @@ export function validate(tripData) {
     } else {
         result.message = "There is missing input, please fill the form."
     } 
-
     return result;
-    
 }
 
 function isEmpty(value) {

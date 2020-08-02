@@ -66,7 +66,7 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
     };
 
     let validatedResult =  validate(tripData);
-    
+
     if(!validatedResult.approved){
         Swal.fire({
             icon: 'error',
@@ -78,9 +78,7 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
         getData(tripData);
     }
     
-    let result = await fetch("http://api.geonames.org/searchJSON?q=london&maxRows=10&username=demo");
-    let data = await result.json();
-    console.log(data);
+
 
 });
 
