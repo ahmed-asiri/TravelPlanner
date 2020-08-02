@@ -20,30 +20,85 @@ app.use("/", express.static(__dirname + "/../../dist"));
 
 app.post("/", async (req, res) => {
     
+    let tripCardInfo = await tripData(req.body);
+    res.send(JSON.stringify(tripCardInfo));
+
+});
+
+async function tripData(reqData){
     // getting the data from the Geonames API
-    let result = await fetch(`http://api.geonames.org/searchJSON?q=${req.body.dest}&maxRows=10&username=${process.env.GEO_USERNAME}`);
-    let geonamesData = await result.json();
+    let geoObj = await getGeo(reqData.dest);
 
     // getting weather data
+    let weatherObj = await getWeaher(reqData.isCurrent, geoObj);
 
-    if(req.body.isCurrent){
-        let responseWeatherData = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${geonamesData.geonames[0].lat}&lon=${geonamesData.geonames[0].lng}&key=${process.env.BIT_API_KEY}`);
-        let weatherData = await responseWeatherData.json();
+    // getting the picture of the visited place
+    let picObj = await getPic(geoObj);
 
-        console.log(geonamesData.geonames[0].lat, geonamesData.geonames[0].lng);
-        console.log(weatherData);
-    } else {
-        let responseWeatherData = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${geonamesData.geonames[0].lat}&lon=${geonamesData.geonames[0].lng}&key=${process.env.BIT_API_KEY}`);
-        let weatherData = await responseWeatherData.json();
-
-        console.log(geonamesData.geonames[0].lat, geonamesData.geonames[0].lng);
-        console.log(weatherData);
+    // prepare the data in one object for the client
+    let trip = {
+        city: geoObj.city,
+        country: geoObj.country.replace("+", " "),
+        weatherData: weatherObj,
+        imgURL: picObj.imgURL
     }
 
+    return trip;
 
-    //res.send(data);
-    console.log(req.body.isCurrent);
-});
+
+}
+
+async function getGeo(dest) {
+    // This function will fetch the data from  the Geonames API and return the important values only that will be used in other API's.
+    let geonamesResponse = await fetch(`http://api.geonames.org/searchJSON?q=${dest}&maxRows=10&username=${process.env.GEO_USERNAME}`);
+    let geonamesData = await geonamesResponse.json();
+
+    let result = {
+        lat: geonamesData.geonames[0].lat,
+        lon: geonamesData.geonames[0].lng,
+        country: geonamesData.geonames[0].countryName.replace(" ", "+"),
+        city: dest
+    }
+    return result;
+}
+
+
+async function getWeaher(isCurrent, geoObj){
+    let apiRoute = "forecast/daily";
+    if(isCurrent){
+      apiRoute = "current";  
+    } 
+    let responseWeatherData = await fetch(`https://api.weatherbit.io/v2.0/${apiRoute}?lat=${geoObj.lat}&lon=${geoObj.lon}&key=${process.env.BIT_API_KEY}`);
+    let weatherData = await responseWeatherData.json();    
+
+    let result = {
+        low: weatherData.data[0].low_temp,
+        max: weatherData.data[0].max_temp,
+        weather: weatherData.data[0].weather
+    }
+
+    return result;
+
+}
+
+
+async function getPic(geoObj){
+    let responsePic = await fetch(`https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${geoObj.city}&image_type=photo&orientation=horizontal&category=places`)
+    let picObj = await responsePic.json();
+
+    if(picObj.totalHits == 0){
+        // if the response was 0 images for the city, get the Pic for the country.
+        responsePic = await fetch(`https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${geoObj.country}&image_type=photo&orientation=horizontal&category=places`)
+        picObj = await responsePic.json();      
+    }
+
+    let result = {
+        imgURL: picObj.hits[0].webformatURL
+    };
+
+    return result;
+}
+
 
 const port = process.env.PORT || 3000;
 app.listen( port, async function (){

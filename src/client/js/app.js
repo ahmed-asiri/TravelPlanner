@@ -77,7 +77,26 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
             allowOutsideClick: false
           });
     } else {
-        getData(tripData);
+        let cardDataResponse = await getData(tripData);
+        let cardData = cardDataResponse;
+        console.log(cardData.weatherData.weather.icon);
+        let card = `<div style="height: 400px; width: 250px; margin: auto;" class="card"><div class="card__img-option">
+        <img src="${cardData.imgURL}" alt="${cardData.city}">
+        <div class="card__img-option--options">
+        <i class="far fa-trash-alt"></i>
+        </div></div>
+        <h3 class="card__city"> ${cardData.city}, 
+        <span class="card__city--country">${cardData.country}</span>
+        </h3>
+        <p class="card__date">10/10/2020 <i class="fas fa-plane"></i> 15/10/2020</p>
+        <p class="card__degree">${cardData.weatherData.low} to ${cardData.weatherData.max}</p>
+        <p class="card__time">5 days away</p>
+        </div>`
+        Swal.fire({
+            title: 'Trip Preview',
+            html: card,
+            allowOutsideClick: false,
+          });
     }
     
 
