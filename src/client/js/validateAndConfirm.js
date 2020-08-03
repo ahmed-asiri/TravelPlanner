@@ -28,7 +28,7 @@ export async function submitData(eve) {
     } else {
         tripData.isCurrent = isCurrent(tripData);
         let cardData = await gettingDataAndLoading(tripData);
-        previewAndConfirm(cardData);
+        await previewAndConfirm(cardData);
     }
 }
 
