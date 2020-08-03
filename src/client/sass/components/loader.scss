@@ -13,6 +13,25 @@
     &__img {
         width: 250px;
     }
+
+    &__loader-attribute {
+        &:visited,
+        &:link {
+            color: #0056B3;
+            font-size: 2rem;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        &:focus,
+        &:hover {
+            color: darken($color: #0056B3, $amount: 10);
+        }
+    }
 }
 
 

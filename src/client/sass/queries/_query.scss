@@ -180,18 +180,25 @@
         padding-left: $navigation-padding-left;
         border-radius: 0;
         position: relative;
+        i {
+            transition: all 0.2s ease;
+            cursor: pointer;
 
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+
+        
         &__list {
             list-style: none;
             display: none;
             justify-content: space-evenly;
             font-size: 1.6rem;
+            transition: all .7s ease;
 
             &.active {
-                animation-name: menu-right-to-left;
-                animation-duration: .5s;
-                animation-fill-mode: forwards;
-                transition: transform 3s ease;
+                transform: translateX(-100%);
                 display: block;
                 background-color: $color-dark-blue;
                 position: fixed;

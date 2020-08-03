@@ -5,19 +5,21 @@ import {isCurrent} from "./current";
 
 export function eventsRegister() {
 
-// Burger Menu open Event
-document.querySelector(".navigation__menu").addEventListener("click", (eve) => {
-        document.querySelector(".navigation__list").classList.add("active");
+
+
+
+document.querySelector(".navigation").addEventListener("click", function (eve) {
+    // This add the open and close functionality on the Navigation for mobile and tablets
+    eve.preventDefault();
+    if(eve.target.tagName === "I"){
+        this.children[1].classList.toggle("active");
+    }
 });
 
-// Burger Menu close Event
-document.querySelector(".navigation__list--header i").addEventListener("click", (eve) => {
-    document.querySelector(".navigation__list").classList.remove("active");
-});
+
 
 
 // Trip cards slider event
-
 let pageIndicator = 1;
 
 document.querySelector(".cards-slider").addEventListener("click", sliderMovment);
@@ -55,7 +57,7 @@ function sliderMovment(eve) {
 
 
 
-
+// form event, getting data from the server
 document.querySelector(".header__form--btn").addEventListener("click", async function (eve) {
     eve.preventDefault();
     let inputs = document.querySelectorAll("input");
@@ -83,10 +85,9 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
 
         let cardDataResponse = await getData(tripData);
         let cardData = cardDataResponse;
-       // console.log(cardData.weatherData.weather.icon);
 
-       cardData.depart = tripData.depart.valueAsDate;
-       cardData.arrive = tripData.arrive.valueAsDate;
+        cardData.depart = tripData.depart.valueAsDate;
+        cardData.arrive = tripData.arrive.valueAsDate;
 
 
 
@@ -119,6 +120,12 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
 });
 
 }
+
+
+function addToLocalStorage(cardData){
+    
+}
+
 
 function cardGenerator(cardData) {
     let card = `<div class="card__img-option">
@@ -156,7 +163,6 @@ function timeToCome(departDate) {
 }
 
 function getDataAsString(date) {
-    console.log(date.getTime());
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 }
 
