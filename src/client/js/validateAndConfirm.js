@@ -34,11 +34,11 @@ export async function submitData(eve) {
 
 
 
-async function previewAndConfirm(cardData) {
+function previewAndConfirm(cardData) {
     // preview the Trip Card to the user, he can confirm or cancel it.
     let cardPreviewElement = cardPreviewGenerator(cardData);
 
-    await Swal.fire({
+    Swal.fire({
         title: 'Trip Preview',
         html: cardPreviewElement,
         showCancelButton: true,
