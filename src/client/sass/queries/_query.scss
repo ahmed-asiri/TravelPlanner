@@ -393,11 +393,13 @@
 
     .header {
         grid-row-gap: 30px;
+        height: 60vh;
 
         &__hero-text {
             margin-top: 30px;
 
             &--main {
+                font-size: 4.5rem;
                 display: inline-block;
                 margin-bottom: 8px;
             }
@@ -406,7 +408,7 @@
 
         }
         &__form {
-            margin-top: 20px;
+            margin-top: 0px;
             text-align: left;
             grid-template-columns: 160px 160px;
 
@@ -483,4 +485,58 @@
 
 }
 
+}
+
+
+@media screen and (max-width: 320px) {
+    
+    .header {
+        height: 60vh;
+        grid-gap: 0;
+        &__hero-text{
+            margin: 0;
+            &--main{
+                font-size: 3rem;
+            }
+            &--sub {
+                font-size: 1.5rem;
+            }
+        }
+        &__form {
+            margin: 0;
+            grid-template-columns: 150px 150px;
+            &--destination {
+                width: 290px;
+            }
+
+            &--check-in {
+                width: 140px;
+            }
+            
+            &--check-out {
+                width: 140px;
+            }
+}
+    }
+
+    .trips {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .header__form {
+        grid-template-columns: 125px 125px;
+        &--destination {
+            width: 240px;
+        }
+
+        &--check-in {
+            width: 115px;
+        }
+        
+        &--check-out {
+            width: 115px;
+        }
+}
 }
