@@ -64,8 +64,10 @@ async function gettingDataAndLoading(tripData) {
     let loader = document.querySelector(".loader");
     loader.style.display = "grid";
     let cardData = await getData(tripData);
-    cardData.depart = tripData.depart.valueAsDate;
-    cardData.arrive = tripData.arrive.valueAsDate;
+    //cardData.depart = tripData.depart.valueAsDate;
+    cardData.depart = new Date(tripData.depart.valueAsDate.getFullYear(), tripData.depart.valueAsDate.getMonth(), tripData.depart.valueAsDate.getDate());
+    cardData.arrive = new Date(tripData.arrive.valueAsDate.getFullYear(), tripData.arrive.valueAsDate.getMonth(), tripData.arrive.valueAsDate.getDate());
+    //cardData.arrive = tripData.arrive.valueAsDate;
     loader.style.display = "none";
 
     return cardData;
