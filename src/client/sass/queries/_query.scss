@@ -386,7 +386,20 @@
 
     .header {
         grid-row-gap: 30px;
+
+        &__hero-text {
+            margin-top: 30px;
+
+            &--main {
+                display: inline-block;
+                margin-bottom: 8px;
+            }
+
+
+
+        }
         &__form {
+            margin-top: 20px;
             text-align: left;
             grid-template-columns: 160px 160px;
 
@@ -456,5 +469,11 @@
     width: 150px;
 }
 
+@keyframes rotated-hero {
+    0% {
+        transform: translateX(250%) rotate(120deg);
+    }
+
+}
 
 }
