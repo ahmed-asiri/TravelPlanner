@@ -22,36 +22,55 @@ document.querySelector(".navigation").addEventListener("click", function (eve) {
 // Trip cards slider event
 let pageIndicator = 1;
 
-document.querySelector(".cards-slider").addEventListener("click", sliderMovment);
-function sliderMovment(eve) {
+document.querySelector(".cards-slider").addEventListener("click", cardsSlider);
 
+function cardsSlider(eve) {
     eve.preventDefault();
+
+        if(eve.target.classList.contains("move-btn")) {
+            sliderMove(eve, this);
+        } else if(eve.target.classList.contains("card__img-option--options")){
+            deleteTrip(eve.target.parentElement.parentElement.id, this.firstElementChild)
+        }
+    
+}
+
+function deleteTrip(cardId, container) {
+    localStorage.removeItem(cardId);
+    let cardElement = document.querySelector(`#${cardId}`);
+    cardElement.style.transform = "translateY(150%)";
+    setTimeout(function() {
+        container.removeChild(cardElement);
+        if(container.childElementCount < 1)
+            container.parentElement.parentElement.style.display = "none";
+    }, 500);
+
+
+}
+
+function sliderMove(eve, slider) {
     let direction = true;
-    let sliderWidth = this.getBoundingClientRect().width;
-    let cardContainer = this.firstElementChild;
+    let sliderWidth = slider.getBoundingClientRect().width;
+    let cardContainer = slider.firstElementChild;
     let cardContainerWidth = cardContainer.scrollWidth;
     let pages = Math.ceil(cardContainerWidth / sliderWidth);
     let translateSliderX;
-
-        if(eve.target.classList.contains("move-btn")) {
-            if(eve.target.classList.contains("right")) {
-                if(!(pageIndicator >= pages)) {
-                    pageIndicator++;
-                }
-            } else {
-                if((pageIndicator != 1)) {
-                    pageIndicator--;
-                }
-                direction = false
-            }
-    
-            translateSliderX = (100 * pageIndicator) - 100; // minus 100 becasue at the first will be 0% on X Axies
-            translateSliderX =  translateSliderX * -1 ; 
-
-            cardContainer.style.transform = "translateX(" + translateSliderX + "%)";
-
+    if(eve.target.classList.contains("right")) {
+        if(!(pageIndicator >= pages)) {
+            pageIndicator++;
         }
-    
+    } else {
+        if((pageIndicator != 1)) {
+            pageIndicator--;
+        }
+        direction = false
+    }
+
+    translateSliderX = (100 * pageIndicator) - 100; // minus 100 becasue at the first will be 0% on X Axies
+    translateSliderX =  translateSliderX * -1 ; 
+
+    cardContainer.style.transform = "translateX(" + translateSliderX + "%)";
+
 }
 
 
@@ -121,6 +140,7 @@ let cardsSlider = document.querySelector(".cards-slider__container");
 
 
 function saveTrip(cardData) {
+    cardData.id = "card-" + localStorage.length;
     addToLocalStorage(cardData);
     let cardElement = cardGenerator(cardData);
     insertCardToSlider(cardElement);
@@ -131,12 +151,11 @@ function saveTrip(cardData) {
 
 function addToLocalStorage(cardData){
     // adding the data into the localStorage
-    localStorage.setItem(localStorage.length, JSON.stringify(cardData));
+    localStorage.setItem(cardData.id, JSON.stringify(cardData));
 }
 
 function insertCardToSlider (cardEle) {
     // insert the new Saved Trip into the Slider
-    console.log(cardsSlider);
     if(cardsSlider.children[0] === undefined){
         cardsSlider.appendChild(cardEle);
         return;
@@ -147,20 +166,15 @@ function insertCardToSlider (cardEle) {
 
 
 function loadSlider() {
-    console.log("loaded");
-
     if(localStorage.length > 0) {
         let cardsArray = localStorageToArray();
         console.log(cardsArray);
         let sortedCardsArray = sortArrayBasedOnDate(cardsArray);
-        console.log(sortedCardsArray);
         let fragmentObj = document.createDocumentFragment();
         for (let card of sortedCardsArray) {
             let cardElement = cardGenerator(card);
             fragmentObj.appendChild(cardElement);        
         }
-        console.log(fragmentObj);
-        console.log("stop");
         cardsSlider.parentElement.parentElement.style.display = "block";
         cardsSlider.appendChild(fragmentObj);
     }
@@ -170,10 +184,15 @@ document.addEventListener("DOMContentLoaded", loadSlider);
 
 function localStorageToArray() {
     // on load, it will get all the data from the localStorage into an array
+    let cardsCounter = 0;
     let cardsDataArray = [];
-    for (let i = 0; i < localStorage.length; i++) {
-        if(localStorage.getItem(i) !== ""){
-            cardsDataArray.push(JSON.parse(localStorage.getItem(i)));
+    for (let i = 0; cardsCounter < localStorage.length; i++) {
+        if(localStorage.getItem("card-"+i) !== null){
+            cardsCounter++;
+            let cardObj = JSON.parse(localStorage.getItem("card-"+i));
+            cardObj.depart = new Date(cardObj.depart);
+            cardObj.arrive = new Date(cardObj.arrive);
+            cardsDataArray.push(cardObj);
         }
     }
     return cardsDataArray;
@@ -181,7 +200,7 @@ function localStorageToArray() {
 
 function sortArrayBasedOnDate(arr) {
     // sort the array that generated from the localStorageToArray() function, based on depart date
-    const sortedArray = arr.slice().sort((a, b) => b.depart - a.depart)
+    const sortedArray = arr.slice().sort((a, b) => a.depart - b.depart)
     return sortedArray;
 }
 
@@ -202,6 +221,7 @@ function cardGenerator(cardData) {
 
     let cardElement = document.createElement("DIV");
     cardElement.classList.add("card");
+    cardElement.id = cardData.id;
     cardElement.innerHTML = card;
 
     return cardElement;
@@ -216,9 +236,6 @@ function cardPreviewGenerator(cardData) {
 }
 
 function timeToCome(departDate) {
-    if(departDate.valueAsDate === undefined){
-        departDate = new Date(departDate);
-    }
     let days = Math.ceil((departDate.getTime() - new Date().getTime()) / (1000*60*60*24));
     let message = "Out of Date";
     if(days > 0){
@@ -230,16 +247,10 @@ function timeToCome(departDate) {
 }
 
 function getDataAsString(date) {
-    if(date.valueAsDate === undefined)
-        date = new Date(date);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 }
 
 function getDurationOfTrip(departDate, arriveDate) {
-    if(departDate.valueAsDate === undefined) {
-        departDate = new Date(departDate);
-        arriveDate = new Date(arriveDate);
-    }
     let days = Math.ceil((arriveDate.getTime() - departDate.getTime()) / (1000*60*60*24));
     let message = `${days} Day`;
     if(days > 1)

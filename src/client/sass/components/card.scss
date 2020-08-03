@@ -12,6 +12,7 @@
     border-bottom-right-radius: 20px;
     overflow: hidden;
     position: relative;
+    transition: transform .3s ease;
     &__img-option {
         position: relative;
         height: 50%;
@@ -31,7 +32,11 @@
             i {
                 transition: all 0.2s ease;
                 cursor: pointer;
-
+                pointer-events: none;
+                
+                &::before {
+                    pointer-events: none;
+                }
                 &:hover {
                     transform: translateY(-3px) scale(1.1);
                 }
