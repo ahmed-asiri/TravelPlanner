@@ -40,18 +40,18 @@ async function tripData(reqData){
         city: geoObj.city,
         country: geoObj.country.replace("+", " "),
         countryCode: geoObj.countryCode,
-        low: 20.5,
-        max: 28.8,
+        low: gettingDataFromWeather(weatherObj.low),
+        max: gettingDataFromWeather(weatherObj.max),
         imgURL: picObj.imgURL
     }
 
     return trip;
-    //(weatherObj.max+"").replace(".","d")
+    //
 
 }
 
-function numberToString(num){
-    return num.replace()
+function gettingDataFromWeather(value){
+    return value;
 }
 
 async function getGeo(dest) {
