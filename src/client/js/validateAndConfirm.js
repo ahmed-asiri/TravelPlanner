@@ -53,6 +53,9 @@ function previewAndConfirm(cardData) {
             //confirm the trip
             saveTrip(cardData);
         }
+    })
+    .catch((error) => {
+        console.log(error);
     });
 }
 
