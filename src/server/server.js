@@ -77,9 +77,7 @@ async function getWeaher(isCurrent, geoObj){
     let result = {
         low: weatherData.data[0].low_temp,
         max: weatherData.data[0].max_temp,
-        weather: weatherData.data[0].weather
     }
-   // console.log(weatherData.data[0]);
     return result;
 
 }
