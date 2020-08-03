@@ -3,7 +3,6 @@ const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const cors = require("cors");
-const { NamedModulesPlugin } = require("webpack");
 
 require("dotenv").config();
 
@@ -109,4 +108,4 @@ app.listen( port, async function (){
 
 });
 
-module.exports = getGeo;
+module.exports = {getGeo};

@@ -1,4 +1,6 @@
-const getGeo = require("../src/server/server");
+//const getGeo = require("../src/server/server");
+import getGeo from "../src/server/server";
+
 import 'babel-polyfill';
 import fetchMock from "jest-fetch-mock";
 

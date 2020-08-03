@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./assets/TrAvenger.ico" >
-    <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/27a9a56b8c.js" crossorigin="anonymous"></script>
     <title>TrAvenger</title>
-
 </head>
 <body>
     <nav class="navigation">
@@ -52,23 +50,13 @@
     <section class="trips">
         <h2 class="trips__heading">my trips</h2>
         <div class="cards-slider">
-
             <div class="cards-slider__container">
-
-                
-
-
             </div>
-
-
-
             <a href="#" class="cards-slider__left-btn move-btn left"><i class="fas fa-chevron-left"></i></a>
             <a href="#" class="cards-slider__right-btn move-btn right"><i class="fas fa-chevron-right"></i></a>
             <div class="cards-slider--background-terquase"></div>
             <div class="cards-slider--background-pink"></div>
             <div class="cards-slider--background-light-blue"></div>
-
-            
         </div>
     </section>
     <div class="loader">
@@ -80,13 +68,12 @@
         if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js');
+                navigator.serviceWorker.register('./assets/sw.js');
             });
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="sweetalert2.all.min.js"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 </body>
 </html>

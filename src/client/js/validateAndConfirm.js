@@ -14,7 +14,7 @@ export async function submitData(eve) {
         arrive: inputs[2]
     };
     let validatedResult =  validate(tripData);
-    tripData.isCurrent = isCurrent(tripData);
+
     if(!validatedResult.approved){
         Swal.fire({
             icon: 'error',
@@ -23,6 +23,7 @@ export async function submitData(eve) {
             allowOutsideClick: true
           });
     } else {
+        tripData.isCurrent = isCurrent(tripData);
         let cardData = await gettingDataAndLoading(tripData);
         previewAndConfirm(cardData);
     }

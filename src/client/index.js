@@ -9,6 +9,7 @@ import {cardsSlider} from  "./js/sliderActions";
 import "./imgs/TrAvenger.ico";
 import "./imgs/hero-img.svg";
 import "./imgs/hero-image.jpg";
+import "./imgs/loader.svg";
 
 // The primary function of the app.js
 eventsRegister();
