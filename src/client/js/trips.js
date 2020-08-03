@@ -76,7 +76,7 @@ function cardGenerator(cardData) {
     <span class="card__city--country">${cardData.countryCode}</span>
     </h3>
     <p class="card__date">${getDataAsString(cardData.depart)}<i class="fas fa-plane"></i> ${getDataAsString(cardData.arrive)}</p>
-    <p class="card__degree"><i class="fas fa-temperature-low"></i> ${cardData.low} to ${cardData.max}</p>
+    <p class="card__degree"><i class="fas fa-temperature-low"></i> ${cardData.lowTemp} to ${cardData.maxTemp}</p>
     <p class="card__duration"><i class="far fa-clock"></i> ${getDurationOfTrip(cardData.depart, cardData.arrive)}</p>
     <p class="card__time">${timeToCome(cardData.depart)}</p>`;
 

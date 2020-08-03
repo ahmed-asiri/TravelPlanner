@@ -40,13 +40,13 @@ async function tripData(reqData){
         city: geoObj.city,
         country: geoObj.country.replace("+", " "),
         countryCode: geoObj.countryCode,
-        low: gettingDataFromWeather(weatherObj.low),
-        max: gettingDataFromWeather(weatherObj.max),
+        lowTemp: weatherObj.low,
+        maxTemp: weatherObj.max,
         imgURL: picObj.imgURL
     }
 
     return trip;
-    //
+    //weatherObj.low
 
 }
 
