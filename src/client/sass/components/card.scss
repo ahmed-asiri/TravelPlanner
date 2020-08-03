@@ -12,7 +12,7 @@
     border-bottom-right-radius: 20px;
     overflow: hidden;
     position: relative;
-    transition: transform .3s ease;
+    transition: transform .5s ease;
     &__img-option {
         position: relative;
         height: 50%;
@@ -28,10 +28,10 @@
             top: 80%;
             left: 50%;
             transform: translateX(-50%);
-            
+            cursor: pointer;
+        
             i {
                 transition: all 0.2s ease;
-                cursor: pointer;
                 pointer-events: none;
                 
                 &::before {
