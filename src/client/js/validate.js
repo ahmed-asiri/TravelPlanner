@@ -1,3 +1,4 @@
+
 export function validate(tripData) {
 
     let result = {
@@ -31,5 +32,6 @@ function dateDimension(depart, arrive) {
 }
 
 function pastDay(depart) {
+    // check if the depart date is before today date.
     return depart.getTime() <= new Date().setHours(0,0,0,0) ? true : false;
 }

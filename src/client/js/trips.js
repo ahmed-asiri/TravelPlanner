@@ -1,7 +1,7 @@
 let cardsSlider = document.querySelector(".cards-slider__container");
 
-
 export function saveTrip(cardData) {
+    // adding the trip to the localStorage and then append it to the cards-slider
     cardData.id = "card-" + localStorage.length;
     addToLocalStorage(cardData);
     let cardElement = cardGenerator(cardData);
@@ -28,9 +28,9 @@ function insertCardToSlider (cardEle) {
 
 
 export function loadSlider() {
+    // this function is used for DOMContentLoaded event, to load all the LocalStorage content into the Slider
     if(localStorage.length > 0) {
         let cardsArray = localStorageToArray();
-        console.log(cardsArray);
         let sortedCardsArray = sortArrayBasedOnDate(cardsArray);
         let fragmentObj = document.createDocumentFragment();
         for (let card of sortedCardsArray) {
@@ -89,6 +89,7 @@ function cardGenerator(cardData) {
 }
 
 export function cardPreviewGenerator(cardData) {
+    // this will create card elementm but it it for preview not to be added into the DOM
     let cardElement = cardGenerator(cardData);
     cardElement.style.height = "400px";
     cardElement.style.width = "250px";
@@ -97,6 +98,7 @@ export function cardPreviewGenerator(cardData) {
 }
 
 function timeToCome(departDate) {
+    // calculate the time before the trip departing date come
     let days = Math.ceil((departDate.getTime() - new Date().getTime()) / (1000*60*60*24));
     let message = "Out of Date";
     if(days > 0){
@@ -108,6 +110,7 @@ function timeToCome(departDate) {
 }
 
 function getDataAsString(date) {
+    // convert the date object into fromated string as 'mm/dd/yyyy' for displaying the DOM
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 }
 

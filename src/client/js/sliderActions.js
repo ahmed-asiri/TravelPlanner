@@ -1,6 +1,7 @@
 let pageIndicator = 1;
 
 export function cardsSlider(eve) {
+    // this is the main function that will trigger when cards-slider clicked.
     eve.preventDefault();
 
         if(eve.target.classList.contains("move-btn")) {
@@ -14,10 +15,12 @@ export function cardsSlider(eve) {
 
 
 function deleteTrip(cardId, container) {
+    // if the user click on the 'trash' icon on the card, the trip will be deleted
     localStorage.removeItem(cardId);
     let cardElement = document.querySelector(`#${cardId}`);
     cardElement.style.transform = "translateY(150%)";
     setTimeout(function() {
+        document.querySelector(".move-btn.left").click();
         container.removeChild(cardElement);
         if(container.childElementCount < 1)
             container.parentElement.parentElement.style.display = "none";
@@ -27,6 +30,7 @@ function deleteTrip(cardId, container) {
 }
 
 function sliderMove(eve, slider) {
+    // if the user click on the left or right button on the slider, the slider will move.
     let direction = true;
     let sliderWidth = slider.getBoundingClientRect().width;
     let cardContainer = slider.firstElementChild;
