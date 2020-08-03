@@ -40,8 +40,8 @@ async function tripData(reqData){
         city: geoObj.city,
         country: geoObj.country.replace("+", " "),
         countryCode: geoObj.countryCode,
-        low: Math.ceil(weatherObj.low),
-        max: Math.ceil(weatherObj.max),
+        low:  "Fine?",
+        max:  "Yeah, Good",
         imgURL: picObj.imgURL
     }
 
