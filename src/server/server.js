@@ -40,8 +40,8 @@ async function tripData(reqData){
         city: geoObj.city,
         country: geoObj.country.replace("+", " "),
         countryCode: geoObj.countryCode,
-        low:  "Fine?",
-        max:  "Yeah, Good",
+        low:   weatherObj.low,
+        max:  weatherObj.max ,
         imgURL: picObj.imgURL
     }
 
@@ -75,8 +75,8 @@ async function getWeaher(isCurrent, geoObj){
     let weatherData = await responseWeatherData.json();    
 
     let result = {
-        low: weatherData.data[0].low_temp,
-        max: weatherData.data[0].max_temp,
+        low: "" + weatherData.data[0].low_temp,
+        max: "" + weatherData.data[0].max_temp,
     }
     return result;
 
