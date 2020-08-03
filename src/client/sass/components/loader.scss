@@ -1,0 +1,19 @@
+.loader {
+            
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    place-items: center;
+    background-color: rgba(239, 239, 239, 0.7);
+
+    &__img {
+        width: 250px;
+    }
+}
+
+
+

@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+    target: 'node',
     entry: "./src/client/index.js",
     module: {
         rules: [

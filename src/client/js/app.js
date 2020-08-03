@@ -77,9 +77,15 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
             allowOutsideClick: false
           });
     } else {
+        let loader = document.querySelector(".loader");
+        loader.style.display = "grid";
+
+
         let cardDataResponse = await getData(tripData);
         let cardData = cardDataResponse;
         console.log(cardData.weatherData.weather.icon);
+        loader.style.display = "none";
+
         let card = `<div style="height: 400px; width: 250px; margin: auto;" class="card"><div class="card__img-option">
         <img src="${cardData.imgURL}" alt="${cardData.city}">
         <div class="card__img-option--options">
