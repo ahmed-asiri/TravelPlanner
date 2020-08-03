@@ -1,7 +1,7 @@
 
 export async function getData(data) {
   // fetching the data from the API and return the cardData as final result.
-    let response = await fetch("http://localhost:3000/", {
+    let response = await fetch("https://travenger.herokuapp.com/", {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json'
