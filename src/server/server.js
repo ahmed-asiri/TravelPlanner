@@ -37,7 +37,7 @@ async function tripData(reqData){
 
     // prepare the data in one object for the client
     let trip = {
-        city: geoObj.city,
+        city: 20,
         country: geoObj.country.replace("+", " "),
         countryCode: geoObj.countryCode,
         low: "" + weatherObj.low,
