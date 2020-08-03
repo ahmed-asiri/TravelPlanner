@@ -24,12 +24,12 @@ document.querySelector(".cards-slider").addEventListener("click", sliderMovment)
 function sliderMovment(eve) {
 
     eve.preventDefault();
-    
+    let direction = true;
     let sliderWidth = this.getBoundingClientRect().width;
     let cardContainer = this.firstElementChild;
     let cardContainerWidth = cardContainer.scrollWidth;
     let pages = Math.ceil(cardContainerWidth / sliderWidth);
-
+    let translateSliderX;
 
         if(eve.target.classList.contains("move-btn")) {
             if(eve.target.classList.contains("right")) {
@@ -83,25 +83,34 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
 
         let cardDataResponse = await getData(tripData);
         let cardData = cardDataResponse;
-        console.log(cardData.weatherData.weather.icon);
+       // console.log(cardData.weatherData.weather.icon);
+
+       cardData.depart = tripData.depart.valueAsDate;
+       cardData.arrive = tripData.arrive.valueAsDate;
+
+
+
         loader.style.display = "none";
 
-        let card = `<div style="height: 400px; width: 250px; margin: auto;" class="card"><div class="card__img-option">
-        <img src="${cardData.imgURL}" alt="${cardData.city}">
-        <div class="card__img-option--options">
-        <i class="far fa-trash-alt"></i>
-        </div></div>
-        <h3 class="card__city"> ${cardData.city}, 
-        <span class="card__city--country">${cardData.countryCode}</span>
-        </h3>
-        <p class="card__date">10/10/2020 <i class="fas fa-plane"></i> 15/10/2020</p>
-        <p class="card__degree">${cardData.weatherData.low} to ${cardData.weatherData.max}</p>
-        <p class="card__time">5 days away</p>
-        </div>`
+        let card = cardGenerator(cardData);
+
         Swal.fire({
             title: 'Trip Preview',
             html: card,
+            showCancelButton: true,
             allowOutsideClick: false,
+            cancelButtonText: "Cancel Trip",
+            confirmButtonText: "Save Trip",
+            cancelButtonColor: "#d33",
+            confirmButtonColor: "#3085d6"
+          })
+          .then((dismiss) => {
+              if(dismiss.isConfirmed){
+                // on Confirm
+                cardGenerator(cardData)
+              }else if(dismiss.isDismissed){
+                // on Cancel
+              }
           });
     }
     
@@ -111,11 +120,52 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
 
 }
 
+function cardGenerator(cardData) {
+    let card = `<div class="card__img-option">
+    <img src="${cardData.imgURL}" alt="${cardData.city}">
+    <div class="card__img-option--options">
+    <i class="far fa-trash-alt"></i>
+    </div></div>
+    <h3 class="card__city"> ${cardData.city}, 
+    <span class="card__city--country">${cardData.countryCode}</span>
+    </h3>
+    <p class="card__date">${getDataAsString(cardData.depart)}<i class="fas fa-plane"></i> ${getDataAsString(cardData.arrive)}</p>
+    <p class="card__degree"><i class="fas fa-temperature-low"></i> ${cardData.weatherData.low} to ${cardData.weatherData.max}</p>
+    <p class="card__duration"><i class="far fa-clock"></i> ${getDurationOfTrip(cardData.depart, cardData.arrive)}</p>
+    <p class="card__time">${timeToCome(cardData.depart)}</p>`;
 
+    let cardElement = document.createElement("DIV");
+    cardElement.classList.add("card");
+    cardElement.style.height = "400px";
+    cardElement.style.width = "250px";
+    cardElement.style.margin = "auto";
+    cardElement.innerHTML = card;
 
+    return cardElement;
+}
 
+function timeToCome(departDate) {
+    let days = Math.ceil((departDate.getTime() - new Date().getTime()) / (1000*60*60*24));
+    let message = "Out of Date";
+    if(days > 0){
+        message = days == 1? "1 day away" : `${days} days away` 
+    }
 
-// CARD, we can insert it in the footer in swalAlert
-let card = '<div class="card"><div class="card__img-option"><img src="./assets/hero-image.jpg" alt="hero"><div class="card__img-option--options"><i class="far fa-trash-alt"></i></div></div><h3 class="card__city"> Paris, <span class="card__city--country">france</span></h3><p class="card__date">10/10/2020 <i class="fas fa-plane"></i> 15/10/2020</p><p class="card__degree">30 to 45</p><p class="card__time">5 days away</p></div>'
+    return message;
 
+}
+
+function getDataAsString(date) {
+    console.log(date.getTime());
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+}
+
+function getDurationOfTrip(departDate, arriveDate) {
+    let days = Math.ceil((arriveDate.getTime() - departDate.getTime()) / (1000*60*60*24));
+    let message = `${days} Day`;
+    if(days > 1)
+        message += "s";
+    return message;
+
+}
 

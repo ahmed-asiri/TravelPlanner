@@ -52,7 +52,7 @@
     }
 
     &__date {
-        margin-top: 20px;
+        margin-top: 15px;
         font-size: 1.7rem;
         color: $color-dark-blue;
 
@@ -63,9 +63,23 @@
     }
 
     &__degree {
-        margin-top: 20px;
+        margin-top: 15px;
         font-size: 1.7rem;
+
+        i {
+            color: $color-pink;
+        }
     }
+
+    &__duration {
+        margin-top: 15px;
+        font-size: 1.7rem;
+
+        i {
+            color: $color-pink;
+        }
+    }
+
 
     &__time {
         margin: auto;
