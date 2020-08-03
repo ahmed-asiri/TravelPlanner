@@ -1,5 +1,4 @@
 import {loadSlider} from "./trips";
-import {cardsSlider} from  "./sliderActions";
 import {submitData} from "./validateAndConfirm";
 
 
@@ -14,8 +13,7 @@ document.querySelector(".navigation").addEventListener("click", function (eve) {
     }
 });
 
-// Trip cards slider event
-document.querySelector(".cards-slider").addEventListener("click", cardsSlider);
+
 
 // form event, getting data from the server
 document.querySelector(".header__form--btn").addEventListener("click", submitData);

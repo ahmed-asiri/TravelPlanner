@@ -21,17 +21,17 @@ export function validate(tripData) {
     return result;
 }
 
-function isEmpty(value) {
+export function isEmpty(value) {
     // if the value is Empty return true, otherwise false.  
     return value === "" ? true : false;
 }
 
-function dateDimension(depart, arrive) {
+export function dateDimension(depart, arrive) {
     // if it's wrong date dimension return false, otherwise return true.  
     return depart < arrive ? true : false;
 }
 
-function pastDay(depart) {
+export function pastDay(depart) {
     // check if the depart date is before today date.
     return depart.getTime() <= new Date().setHours(0,0,0,0) ? true : false;
 }
