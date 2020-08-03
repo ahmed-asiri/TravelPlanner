@@ -38,7 +38,7 @@ async function previewAndConfirm(cardData) {
     // preview the Trip Card to the user, he can confirm or cancel it.
     let cardPreviewElement = cardPreviewGenerator(cardData);
 
-    Swal.fire({
+    await Swal.fire({
         title: 'Trip Preview',
         html: cardPreviewElement,
         showCancelButton: true,
