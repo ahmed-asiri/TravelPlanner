@@ -10,7 +10,6 @@ export async function getData(data) {
     });
 
     let cardData = await response.json();
-    cardData.weatherData = JSON.parse(cardData.weatherData);
     return cardData;
 
 } 
