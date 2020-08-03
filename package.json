@@ -6,7 +6,7 @@
   "scripts": {
     "compile:sass": "node-sass src/client/sass/main.scss src/client/css/style.css -w",
     "build": "webpack --config webpack.prod.js",
-    "start": "nodemon src/server/server.js",
+    "start": "node src/server/server.js",
     "dev": "webpack --config webpack.dev.js --watch",
     "dev:server": "webpack-dev-server --config webpack.dev.js --open",
     "test": "jest"
