@@ -34,26 +34,7 @@ export async function submitData(eve) {
 function previewAndConfirm(cardData) {
     // preview the Trip Card to the user, he can confirm or cancel it.
     let cardPreviewElement = cardPreviewGenerator(cardData);
-
-    Swal.fire({
-        title: 'Trip Preview',
-        html: cardPreviewElement,
-        showCancelButton: true,
-        allowOutsideClick: false,
-        cancelButtonText: "Cancel Trip",
-        confirmButtonText: "Save Trip",
-        cancelButtonColor: "#d33",
-        confirmButtonColor: "#3085d6"
-      })
-    .then((dismiss) => {
-        if(dismiss.isConfirmed){
-            //confirm the trip
-            saveTrip(cardData);
-        }else if(dismiss.isDismissed){
-            //cancel the trip
-            cardPreviewElement = null;
-        }
-    });
+    saveTrip(cardData);
 }
 
 async function gettingDataAndLoading(tripData) {
