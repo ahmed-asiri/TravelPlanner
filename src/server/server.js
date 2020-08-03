@@ -39,6 +39,7 @@ async function tripData(reqData){
     let trip = {
         city: geoObj.city,
         country: geoObj.country.replace("+", " "),
+        countryCode: geoObj.countryCode,
         weatherData: weatherObj,
         imgURL: picObj.imgURL
     }
@@ -52,12 +53,13 @@ async function getGeo(dest) {
     // This function will fetch the data from  the Geonames API and return the important values only that will be used in other API's.
     let geonamesResponse = await fetch(`http://api.geonames.org/searchJSON?q=${dest}&maxRows=10&username=${process.env.GEO_USERNAME}`);
     let geonamesData = await geonamesResponse.json();
-
+    //console.log(geonamesData.geonames[0]);
     let result = {
         lat: geonamesData.geonames[0].lat,
         lon: geonamesData.geonames[0].lng,
         country: geonamesData.geonames[0].countryName.replace(" ", "+"),
-        city: dest
+        city: dest,
+        countryCode: geonamesData.geonames[0].countryCode
     }
     return result;
 }
@@ -76,7 +78,7 @@ async function getWeaher(isCurrent, geoObj){
         max: weatherData.data[0].max_temp,
         weather: weatherData.data[0].weather
     }
-
+   // console.log(weatherData.data[0]);
     return result;
 
 }

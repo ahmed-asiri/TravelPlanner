@@ -34,7 +34,7 @@
     &__form {
         display: grid;
         grid-template-columns: 250px 250px;
-        grid-template-rows: repeat(3, $input-hight);
+        grid-template-rows: repeat(3, 70px);
         grid-template-areas: 
         "destination destination"
         "check-in check-out"
@@ -43,7 +43,7 @@
         grid-area: form;
 
         input {
-            height: $input-hight - 5px;
+            height: 45px;
             width: 100%;
             box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.356);
             border: none;
@@ -58,12 +58,20 @@
             outline-color: $color-light-blue;
         }
 
+        &--input-title {
+            color: #707070;
+            font-size: 2rem;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
         &--destination {
             animation: left-to-right 2s;
             grid-area: destination;
             width: 490px;
 
         }
+
 
 
         &--check-in {
@@ -87,11 +95,11 @@
          .btn, 
          .btn:link, 
          .btn:visited {
+            margin-top: 5px;
             animation: left-to-right 3s;
             grid-area: btn;
             height: 45px;
             width: 150px;
-            margin-left: 5px;
             border: none;
             color: white;
             font-weight: 300;

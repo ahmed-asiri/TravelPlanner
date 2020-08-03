@@ -92,7 +92,7 @@ document.querySelector(".header__form--btn").addEventListener("click", async fun
         <i class="far fa-trash-alt"></i>
         </div></div>
         <h3 class="card__city"> ${cardData.city}, 
-        <span class="card__city--country">${cardData.country}</span>
+        <span class="card__city--country">${cardData.countryCode}</span>
         </h3>
         <p class="card__date">10/10/2020 <i class="fas fa-plane"></i> 15/10/2020</p>
         <p class="card__degree">${cardData.weatherData.low} to ${cardData.weatherData.max}</p>
