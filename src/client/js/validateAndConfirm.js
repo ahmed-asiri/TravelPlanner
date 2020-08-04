@@ -29,12 +29,7 @@ export async function submitData(eve) {
     //alert(inputs[1].valueAsDate.getMonth() + " ---- " + inputs[2].valueAsDate.getMonth());
     //alert(inputs[1].valueAsDate.getFullYear() + " ---- " + inputs[2].valueAsDate.getFullYear());
 
-    //alert(isCurrent(new Date(inputs[1].value)));
-    //alert(isCurrent(tripData.depart));
 
-    alert(timeToCome(new Date(inputs[1].value)));
-    alert(timeToCome(tripData.depart));
-    return;
 
     let validatedResult =  validate(tripData);
 
@@ -84,13 +79,14 @@ async function gettingDataAndLoading(tripData) {
     let loader = document.querySelector(".loader");
     loader.style.display = "grid";
     let cardData = await getData(tripData);
-    cardData.depart = tripData.depart;
-    cardData.arrive = tripData.arrive;
+    cardData.depart = new Date(tripData.depart.valueAsDate.getFullYear(), tripData.depart.valueAsDate.getMonth(), tripData.depart.valueAsDate.getDate());
+    cardData.depart = new Date(tripData.arrive.valueAsDate.getFullYear(), tripData.arrive.valueAsDate.getMonth(), tripData.arrive.valueAsDate.getDate());
+
+    //cardData.depart = tripData.depart;
+    //cardData.arrive = tripData.arrive;
     loader.style.display = "none";
 
     return cardData;
 
-    //cardData.depart = new Date(tripData.depart.valueAsDate.getFullYear(), tripData.depart.valueAsDate.getMonth(), tripData.depart.valueAsDate.getDate());
-    //cardData.depart = new Date(tripData.arrive.valueAsDate.getFullYear(), tripData.arrive.valueAsDate.getMonth(), tripData.arrive.valueAsDate.getDate());
 
 }
