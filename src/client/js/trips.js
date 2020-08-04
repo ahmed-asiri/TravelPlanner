@@ -78,7 +78,7 @@ function cardGenerator(cardData) {
     <p class="card__date">${getDataAsString(cardData.depart)}<i class="fas fa-plane"></i> ${getDataAsString(cardData.arrive)}</p>
     <p class="card__degree"><i class="fas fa-temperature-low"></i> ${cardData.lowTemp} to ${cardData.maxTemp}</p>
     <p class="card__duration"><i class="far fa-clock"></i> ${getDurationOfTrip(cardData.depart, cardData.arrive)}</p>
-    <p class="card__time">${timeToCome(cardData.depart)}</p>`;
+    <p class="card__time">${timeToCome(cardData.depart, cardData.arrive)}</p>`;
 
     let cardElement = document.createElement("DIV");
     cardElement.classList.add("card");
@@ -97,12 +97,19 @@ export function cardPreviewGenerator(cardData) {
     return cardElement;
 }
 
-function timeToCome(departDate) {
+function timeToCome(departDate, arriveDate) {
     // calculate the time before the trip departing date come
-    let days = Math.ceil((departDate.getTime() - new Date().getTime()) / (1000*60*60*24));
+    let departVariance = Math.ceil((departDate.getTime() - new Date().getTime()) / (1000*60*60*24));
+    let arriveVariance = Math.ceil((arriveDate.getTime() - new Date().getTime()) / (1000*60*60*24));
+
     let message = "Out of Date";
-    if(days > 0){
-        message = days == 1? "1 day away" : `${days} days away` 
+
+    if(departVariance > 0) {
+        message = departVariance == 1? "1 day away" : `${departVariance} days away` 
+    } else {
+        if(arriveVariance > 1){
+            message = "In Progress";
+        } 
     }
 
     return message;
