@@ -82,8 +82,8 @@ async function gettingDataAndLoading(tripData) {
     cardData.depart = new Date(tripData.depart.valueAsDate.getFullYear(), tripData.depart.valueAsDate.getMonth(), tripData.depart.valueAsDate.getDate());
     cardData.depart = new Date(tripData.arrive.valueAsDate.getFullYear(), tripData.arrive.valueAsDate.getMonth(), tripData.arrive.valueAsDate.getDate());
 
-    //cardData.depart = tripData.depart;
-    //cardData.arrive = tripData.arrive;
+    cardData.depart = tripData.depart;
+    cardData.arrive = tripData.arrive;
     loader.style.display = "none";
 
     return cardData;
