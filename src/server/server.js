@@ -30,7 +30,7 @@ async function tripData(reqData){
     let geoObj = await getGeo(reqData.dest);
 
     // getting weather data
-    let weatherObj = await getWeaher(reqData.isCurrent, geoObj);
+    let weatherObj = await getWeaher(geoObj, reqData.isCurrent);
 
     // getting the picture of the visited place
     let picObj = await getPic(geoObj);
@@ -70,7 +70,7 @@ async function getGeo(dest) {
 }
 
 
-async function getWeaher(isCurrent=true, geoObj){
+async function getWeaher(geoObj, isCurrent=true){
     let apiRoute = "forecast/daily";
     if(isCurrent)
         apiRoute = "current";  
