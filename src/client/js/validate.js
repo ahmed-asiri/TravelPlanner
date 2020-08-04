@@ -6,9 +6,9 @@ export function validate(tripData) {
         message: ""
     }
     // This function for validating the User Input data.
-    if(!isEmpty(tripData.dest) && !isEmpty(tripData.depart.value) && !isEmpty(tripData.arrive.value)){
-        if(dateDimension(tripData.depart.valueAsDate, tripData.arrive.valueAsDate)){
-            if(!pastDay(tripData.depart.valueAsDate))
+    if(!isEmpty(tripData.dest) && !isEmpty(tripData.depart) && !isEmpty(tripData.arrive)){
+        if(dateDimension(tripData.depart, tripData.arrive)){
+            if(!pastDay(tripData.depart))
                 return result;
             else 
                 result.message = "Departing Date, cannot be before today date";
@@ -23,13 +23,14 @@ export function validate(tripData) {
 
 export function isEmpty(value) {
     // if the value is Empty return true, otherwise false.  
-    return value === "" ? true : false;
+    return value === "" || value === undefined || value === null ? true : false;
 }
 
 export function dateDimension(depart, arrive) {
     // if it's wrong date dimension return false, otherwise return true.  
     return depart < arrive ? true : false;
 }
+
 
 export function pastDay(depart) {
     // check if the depart date is before today date.

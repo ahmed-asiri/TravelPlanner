@@ -1,6 +1,6 @@
-export function isCurrent(data) {
+export function isCurrent(arrive) {
     // help us to decide to use the current weather or forecast
-    if(((data.arrive.valueAsDate.getTime() - new Date().getTime()) / (1000*60*60*24)) <= 7){
+    if(((arrive.getTime() - new Date().getTime()) / (1000*60*60*24)) <= 7){
         return true;
     }
     return false;
