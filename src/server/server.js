@@ -22,7 +22,7 @@ app.post("/", async (req, res) => {
     
     let tripCardInfo = await tripData(req.body);
     res.send(JSON.stringify(tripCardInfo));
-
+    
 });
 
 async function tripData(reqData){
@@ -72,7 +72,8 @@ async function getGeo(dest) {
 
 async function getWeaher(isCurrent, geoObj){
     let apiRoute = "forecast/daily";
-    //apiRoute = "current";  
+    if(isCurrent === "true")
+        apiRoute = "current";  
     
     let responseWeatherData = await fetch(`https://api.weatherbit.io/v2.0/${apiRoute}?lat=${geoObj.lat}&lon=${geoObj.lon}&key=${process.env.BIT_API_KEY}`);
     let weatherData = await responseWeatherData.json();    
