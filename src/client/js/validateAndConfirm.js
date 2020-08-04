@@ -18,12 +18,16 @@ export async function submitData(eve) {
     };
 
     // to be removed.
-    alert(inputs[1].value + " ---- " + inputs[2].value);
-    alert(inputs[1].valueAsDate + " ---- " + inputs[2].valueAsDate);
-    alert(new Date(inputs[1].value) + " ---- " + new Date(inputs[2].value));
-    alert(new Date(inputs[1].value).getTime() + " ---- " + new Date(inputs[2].value).getTime());
-    alert(new Date(inputs[1].valueAsDate).getTime() + " ---- " + new Date(inputs[2].valueAsDate).getTime());
-    alert(inputs[1].valueAsDate.getTime() + " ---- " + inputs[2].valueAsDate).getTime();
+    //alert(inputs[1].value + " ---- " + inputs[2].value);
+    //alert(inputs[1].valueAsDate + " ---- " + inputs[2].valueAsDate);
+    //alert(new Date(inputs[1].value) + " ---- " + new Date(inputs[2].value));
+    //alert(new Date(inputs[1].value).getTime() + " ---- " + new Date(inputs[2].value).getTime());
+    //alert(new Date(inputs[1].valueAsDate).getTime() + " ---- " + new Date(inputs[2].valueAsDate).getTime());
+    //alert(inputs[1].valueAsDate.getTime() + " ---- " + inputs[2].valueAsDate).getTime();
+    alert(inputs[1].valueAsDate.getDate() + " ---- " + inputs[2].valueAsDate.getDate());
+    alert(inputs[1].valueAsDate.getMonth() + " ---- " + inputs[2].valueAsDate.getMonth());
+    alert(inputs[1].valueAsDate.getFullYear() + " ---- " + inputs[2].valueAsDate.getFullYear());
+
 
     return;
     let validatedResult =  validate(tripData);
