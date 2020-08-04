@@ -27,7 +27,7 @@ export async function submitData(eve) {
             allowOutsideClick: true
           });
     } else {
-        tripData.isCurrent = isCurrent(tripData.arrive);
+        tripData.isCurrent = isCurrent(tripData.depart);
         let cardData = await gettingDataAndLoading(tripData);
         await previewAndConfirm(cardData);
     }
