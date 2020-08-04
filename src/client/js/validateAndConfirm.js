@@ -5,7 +5,7 @@ import {validate} from "./validate";
 import {isCurrent} from "./current";
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
-import {timeToCome} from "./trips";
+
 
 export async function submitData(eve) {
     // this function will get data from the server then validate it then ask the user for confirm or cancel
@@ -17,20 +17,6 @@ export async function submitData(eve) {
         arrive: inputs[2].valueAsDate
     };
 
-    // to be removed.
-    
-    //alert(inputs[1].value + " ---- " + inputs[2].value);
-    //alert(inputs[1].valueAsDate + " ---- " + inputs[2].valueAsDate);
-    //alert(new Date(inputs[1].value) + " ---- " + new Date(inputs[2].value));
-    //alert(new Date(inputs[1].value).getTime() + " ---- " + new Date(inputs[2].value).getTime());
-    //alert(new Date(inputs[1].valueAsDate).getTime() + " ---- " + new Date(inputs[2].valueAsDate).getTime());
-    //alert(inputs[1].valueAsDate.getTime() + " ---- " + inputs[2].valueAsDate).getTime();
-    //alert(inputs[1].valueAsDate.getDate() + " ---- " + inputs[2].valueAsDate.getDate());
-    //alert(inputs[1].valueAsDate.getMonth() + " ---- " + inputs[2].valueAsDate.getMonth());
-    //alert(inputs[1].valueAsDate.getFullYear() + " ---- " + inputs[2].valueAsDate.getFullYear());
-
-
-
     let validatedResult =  validate(tripData);
 
     if(!validatedResult.approved){
@@ -41,6 +27,7 @@ export async function submitData(eve) {
             allowOutsideClick: true
           });
     } else {
+
         tripData.isCurrent = isCurrent(tripData.depart);
         let cardData = await gettingDataAndLoading(tripData);
         await previewAndConfirm(cardData);
@@ -79,14 +66,13 @@ async function gettingDataAndLoading(tripData) {
     let loader = document.querySelector(".loader");
     loader.style.display = "grid";
     let cardData = await getData(tripData);
-    cardData.depart = new Date(tripData.depart.valueAsDate.getFullYear(), tripData.depart.valueAsDate.getMonth(), tripData.depart.valueAsDate.getDate());
-    cardData.depart = new Date(tripData.arrive.valueAsDate.getFullYear(), tripData.arrive.valueAsDate.getMonth(), tripData.arrive.valueAsDate.getDate());
-
     cardData.depart = tripData.depart;
     cardData.arrive = tripData.arrive;
     loader.style.display = "none";
 
     return cardData;
 
+    //cardData.depart = new Date(tripData.depart.valueAsDate.getFullYear(), tripData.depart.valueAsDate.getMonth(), tripData.depart.valueAsDate.getDate());
+    //cardData.depart = new Date(tripData.arrive.valueAsDate.getFullYear(), tripData.arrive.valueAsDate.getMonth(), tripData.arrive.valueAsDate.getDate());
 
 }
