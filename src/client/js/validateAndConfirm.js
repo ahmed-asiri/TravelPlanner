@@ -5,7 +5,7 @@ import {validate} from "./validate";
 import {isCurrent} from "./current";
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
-
+import {timeToCome} from "./trips";
 
 export async function submitData(eve) {
     // this function will get data from the server then validate it then ask the user for confirm or cancel
@@ -29,9 +29,11 @@ export async function submitData(eve) {
     //alert(inputs[1].valueAsDate.getMonth() + " ---- " + inputs[2].valueAsDate.getMonth());
     //alert(inputs[1].valueAsDate.getFullYear() + " ---- " + inputs[2].valueAsDate.getFullYear());
 
-    alert(isCurrent(new Date(inputs[1].value)));
-    alert(isCurrent(tripData.depart));
+    //alert(isCurrent(new Date(inputs[1].value)));
+    //alert(isCurrent(tripData.depart));
 
+    alert(timeToCome(new Date(inputs[1].value)));
+    alert(timeToCome(tripData.depart));
     return;
 
     let validatedResult =  validate(tripData);

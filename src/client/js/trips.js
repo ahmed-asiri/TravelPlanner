@@ -97,7 +97,7 @@ export function cardPreviewGenerator(cardData) {
     return cardElement;
 }
 
-function timeToCome(departDate) {
+export function timeToCome(departDate) {
     // calculate the time before the trip departing date come
     let days = Math.ceil((departDate.getTime() - new Date().getTime()) / (1000*60*60*24));
     let message = "Out of Date";
