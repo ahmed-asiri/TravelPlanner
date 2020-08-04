@@ -27,9 +27,6 @@ export async function submitData(eve) {
             allowOutsideClick: true
           });
     } else {
-        tripData.depart = Date.parse(inputs[1].value, "dd-MM-yyyy");
-        tripData.arrive = Date.parse(inputs[2].value, "dd-MM-yyyy");
-
         tripData.isCurrent = isCurrent(tripData.depart);
         let cardData = await gettingDataAndLoading(tripData);
         await previewAndConfirm(cardData);
