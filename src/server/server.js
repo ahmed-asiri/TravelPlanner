@@ -30,7 +30,7 @@ async function tripData(reqData){
     let geoObj = await getGeo(reqData.dest);
 
     // getting weather data
-    let weatherObj = await getWeaher(reqData.isCurrent, geoObj);
+    let weatherObj = await getWeaher(reqData.depart, geoObj);
 
     // getting the picture of the visited place
     let picObj = await getPic(geoObj);
@@ -70,9 +70,9 @@ async function getGeo(dest) {
 }
 
 
-async function getWeaher(isCurrent, geoObj){
+async function getWeaher(depart, geoObj){
     let apiRoute = "forecast/daily";
-    if(isCurrent)
+    if(new Date().getDate() - depart.getDate() < 7 &&  new Date().getMonth() === depart.getMonth() && new Date().getFullYear() === depart.getFullYear())
         apiRoute = "current";  
     
     let responseWeatherData = await fetch(`https://api.weatherbit.io/v2.0/${apiRoute}?lat=${geoObj.lat}&lon=${geoObj.lon}&key=${process.env.BIT_API_KEY}`);
