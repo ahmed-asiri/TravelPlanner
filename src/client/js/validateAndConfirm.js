@@ -63,13 +63,31 @@ function previewAndConfirm(cardData) {
 
 async function gettingDataAndLoading(tripData) {
     // this will call the API, and then display loading SVG, and remove the SVG when data arrive
+    let controller = new AbortController();
+    let signal = controller.signal;
+    signal.addEventListener("abort", () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `You have connection problems, please try again!!`,
+            allowOutsideClick: true
+          });
+    });
+
     let loader = document.querySelector(".loader");
     loader.style.display = "grid";
-    let cardData = await getData(tripData);
-    cardData.depart = tripData.depart;
-    cardData.arrive = tripData.arrive;
-    loader.style.display = "none";
-
+    let timeOutId = setTimeout(()=>{
+        controller.abort();
+    }, 5000);
+    try{
+        let cardData = await getData(tripData, controller, timeOutId);
+        cardData.depart = tripData.depart;
+        cardData.arrive = tripData.arrive;
+    } catch(error){
+        console.log(error.message);
+    }finally {
+        loader.style.display = "none";
+    }
     return cardData;
 
     //cardData.depart = new Date(tripData.depart.valueAsDate.getFullYear(), tripData.depart.valueAsDate.getMonth(), tripData.depart.valueAsDate.getDate());
