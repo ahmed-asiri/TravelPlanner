@@ -22,6 +22,7 @@ export async function submitData(eve) {
     alert(inputs[1].valueAsDate + " ---- " + inputs[2].valueAsDate);
     alert(new Date(inputs[1].value) + " ---- " + new Date(inputs[2].value));
     alert(new Date(inputs[1].value).getTime() + " ---- " + new Date(inputs[2].value).getTime());
+    alert(new Date(inputs[1].valueAsDate).getTime() + " ---- " + new Date(inputs[2].valueAsDate).getTime());
 
     return;
     let validatedResult =  validate(tripData);
