@@ -69,7 +69,7 @@ async function gettingDataAndLoading(tripData) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: `You have connection problems, please try again!!`,
+            text: `You have connection problems or the city name is incorrect, please try again!!`,
             allowOutsideClick: true
           });
     });
@@ -79,8 +79,9 @@ async function gettingDataAndLoading(tripData) {
     let timeOutId = setTimeout(()=>{
         controller.abort();
     }, 5000);
+    let cardData = null;
     try{
-        let cardData = await getData(tripData, controller, timeOutId);
+        cardData = await getData(tripData, controller, timeOutId);
         cardData.depart = tripData.depart;
         cardData.arrive = tripData.arrive;
     } catch(error){

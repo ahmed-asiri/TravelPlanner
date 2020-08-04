@@ -198,6 +198,7 @@
             transition: all .7s ease;
 
             &.active {
+                z-index: 10000;
                 transform: translateX(-100%);
                 display: block;
                 background-color: $color-dark-blue;
