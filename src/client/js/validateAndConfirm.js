@@ -17,6 +17,10 @@ export async function submitData(eve) {
         arrive: inputs[2].valueAsDate
     };
 
+    // to be removed.
+    alert(inputs[1].value + " ---- " + inputs[2].value);
+
+    return;
     let validatedResult =  validate(tripData);
 
     if(!validatedResult.approved){
